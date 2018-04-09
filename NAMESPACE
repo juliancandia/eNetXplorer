@@ -1,0 +1,21 @@
+export(eNetXplorer,eNetXplorerBinomial,eNetXplorerExport,
+eNetXplorerGaussian,eNetXplorerMultinomial,pdf.summary,
+plot.contingency.eNetXplorer,plot.eNetXplorer,plot.feature.caterpillar.eNetXplorer,
+plot.feature.caterpillar.multinom.eNetXplorer,plot.feature.heatmap.eNetXplorer,
+plot.feature.heatmap.multinom.eNetXplorer,
+plot.lambda.vs.QF.eNetXplorer, plot.measured.vs.oob.categ.eNetXplorer,
+plot.measured.vs.oob.eNetXplorer, plot.measured.vs.oob.numer.eNetXplorer,
+plot.summary.eNetXplorer, print.eNetXplorer, print.summary.eNetXplorer,
+summary.eNetXplorer)
+
+exportClasses(eNetXplorer)
+
+import(glmnet,stats,Matrix,RColorBrewer,calibrate,progress)
+
+importFrom("graphics", "abline", "arrows", "axTicks", "axis",
+             "boxplot", "lines", "mtext", "par", "plot", "points",
+             "polygon", "symbols", "title")
+importFrom("methods", "as")
+importFrom("grDevices", "col2rgb", "colorRampPalette", "dev.off",
+             "pdf", "rgb")
+importFrom("gplots","heatmap.2","redgreen")

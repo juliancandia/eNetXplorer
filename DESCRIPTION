@@ -1,0 +1,16 @@
+Package: eNetXplorer
+Type: Package
+Title: Exploration of elastic net families for generalized linear models
+Version: 1.0
+Date: 2018-03-13
+Author: Julian Candia and John S. Tsang
+Maintainer: Julian Candia <julian.candia@nih.gov>
+Imports: glmnet, stats, graphics, methods, grDevices, Matrix, progress, calibrate, RColorBrewer, gplots 
+Description: Provides a quantitative toolkit to explore elastic net families and to uncover correlates contributing to prediction under a cross-validation framework. Fits linear, binomial (logistic) and multinomial models.
+License: GPL-3
+LazyData: true
+LazyLoad: yes
+NeedsCompilation: no
+Packaged: NA
+Repository: NA
+Date/Publication: NA
