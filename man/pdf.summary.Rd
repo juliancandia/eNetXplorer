@@ -1,26 +1,20 @@
-\name{plot}
-\alias{plot.eNetXplorer}
+\name{pdf.summary}
+\alias{pdf.summary}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Generates plots from eNetXplorer object 
+\title{
+Generates pdf report with summary of main results
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot(x, plot.type, alpha.index = NULL, stat = NULL, ...)
+pdf.summary(x, path = getwd(), filename = "eNetXplorer.summary.pdf", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{eNetXplorer object}
-  \item{plot.type}{
-%%     ~~Describe \code{plot.type} here~~
-}
-  \item{alpha.index}{
-%%     ~~Describe \code{alpha.index} here~~
-}
-  \item{stat}{
-%%     ~~Describe \code{stat} here~~
-}
+  \item{path}{Directory path for output pdf file. Default is current working directory}
+  \item{filename}{Name for output pdf file.}
   \item{\dots}{
 %%     ~~Describe \code{\dots} here~~
 }
@@ -46,13 +40,13 @@ Maintainer: Julian Candia \email{julian.candia@nih.gov}}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\seealso{\code{eNetXplorer}
 }
 \examples{
 \dontrun{
 data(QuickStartExample)
 result = eNetXplorer(x=QuickStartExample$predictor,y=QuickStartExample$response,family="gaussian",n_run=25,n_perm_null=20,seed=111)
+suppressWarnings(pdf.summary(result))
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
