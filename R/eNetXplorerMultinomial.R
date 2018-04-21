@@ -283,22 +283,66 @@ n_fold, n_run, n_perm_null, QF.FUN, QF_label, fold_distrib_fail.max,...)
     } # end of alpha loop
     
     # return object
+    rownames(x) = instance
+    colnames(x) = feature
+    names(y) = instance
+    alpha_label = paste0("a",alpha)
+    names(best_lambda) = alpha_label
+    names(model_QF_est) = alpha_label
+    names(QF_model_vs_null_pval) = alpha_label
+    names(lambda_values) = alpha_label
+    names(lambda_QF_est) = alpha_label
+    names(predicted_values) = alpha_label
+    for (i_alpha in 1:n_alpha) {
+        colnames(predicted_values[[i_alpha]]) = class
+        rownames(predicted_values[[i_alpha]]) = instance
+    }
+    names(feature_coef_wmean) = class
+    names(feature_coef_wsd) = class
+    names(feature_freq_mean) = class
+    names(feature_freq_sd) = class
+    names(null_feature_coef_wmean) = class
+    names(null_feature_coef_wsd) = class
+    names(null_feature_freq_mean) = class
+    names(null_feature_freq_sd) = class
+    names(feature_coef_model_vs_null_pval) = class
+    names(feature_freq_model_vs_null_pval) = class
     # conversion from list of matrices to list of sparse matrices
     for (i_class in 1:n_class) {
         feature_coef_wmean[[i_class]] = as(feature_coef_wmean[[i_class]],"CsparseMatrix")
+        rownames(feature_coef_wmean[[i_class]]) = feature
+        colnames(feature_coef_wmean[[i_class]]) = alpha_label
         feature_coef_wsd[[i_class]] = as(feature_coef_wsd[[i_class]],"CsparseMatrix")
+        rownames(feature_coef_wsd[[i_class]]) = feature
+        colnames(feature_coef_wsd[[i_class]]) = alpha_label
         feature_freq_mean[[i_class]] = as(feature_freq_mean[[i_class]],"CsparseMatrix")
+        rownames(feature_freq_mean[[i_class]]) = feature
+        colnames(feature_freq_mean[[i_class]]) = alpha_label
         feature_freq_sd[[i_class]] = as(feature_freq_sd[[i_class]],"CsparseMatrix")
+        rownames(feature_freq_sd[[i_class]]) = feature
+        colnames(feature_freq_sd[[i_class]]) = alpha_label
         null_feature_coef_wmean[[i_class]] = as(null_feature_coef_wmean[[i_class]],"CsparseMatrix")
+        rownames(null_feature_coef_wmean[[i_class]]) = feature
+        colnames(null_feature_coef_wmean[[i_class]]) = alpha_label
         null_feature_coef_wsd[[i_class]] = as(null_feature_coef_wsd[[i_class]],"CsparseMatrix")
+        rownames(null_feature_coef_wsd[[i_class]]) = feature
+        colnames(null_feature_coef_wsd[[i_class]]) = alpha_label
         null_feature_freq_mean[[i_class]] = as(null_feature_freq_mean[[i_class]],"CsparseMatrix")
+        rownames(null_feature_freq_mean[[i_class]]) = feature
+        colnames(null_feature_freq_mean[[i_class]]) = alpha_label
         null_feature_freq_sd[[i_class]] = as(null_feature_freq_sd[[i_class]],"CsparseMatrix")
+        rownames(null_feature_freq_sd[[i_class]]) = feature
+        colnames(null_feature_freq_sd[[i_class]]) = alpha_label
         feature_coef_model_vs_null_pval[[i_class]] = as(feature_coef_model_vs_null_pval[[i_class]],"CsparseMatrix")
+        rownames(feature_coef_model_vs_null_pval[[i_class]]) = feature
+        colnames(feature_coef_model_vs_null_pval[[i_class]]) = alpha_label
         feature_freq_model_vs_null_pval[[i_class]] = as(feature_freq_model_vs_null_pval[[i_class]],"CsparseMatrix")
+        rownames(feature_freq_model_vs_null_pval[[i_class]]) = feature
+        colnames(feature_freq_model_vs_null_pval[[i_class]]) = alpha_label
     }
     list(
     # input data and parameters
-    predictor = x, response = y, alpha = alpha, family = family, nlambda = nlambda,
+    predictor = as(x,"CsparseMatrix"), response = y, alpha = alpha, family = family, nlambda = nlambda,
     nlambda.ext = nlambda.ext, seed = seed, scaled = scaled, n_fold = n_fold, n_run = n_run,
     n_perm_null = n_perm_null, QF_label = QF_label, instance = instance,
     feature = feature, fold_distrib_fail.max = fold_distrib_fail.max, glmnet_params = glmnet.control(),

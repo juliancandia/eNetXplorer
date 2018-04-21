@@ -238,9 +238,44 @@ n_fold, n_run, n_perm_null, QF.FUN, QF_label, fold_distrib_fail.max, ...)
     } # end of alpha loop
     
     # return object
+    rownames(x) = instance
+    colnames(x) = feature
+    names(y) = instance
+    alpha_label = paste0("a",alpha)
+    names(best_lambda) = alpha_label
+    names(model_QF_est) = alpha_label
+    names(QF_model_vs_null_pval) = alpha_label
+    names(lambda_values) = alpha_label
+    names(lambda_QF_est) = alpha_label
+    names(predicted_values) = alpha_label
+    rownames(feature_coef_wmean) = feature
+    colnames(feature_coef_wmean) = alpha_label
+    rownames(feature_coef_wsd) = feature
+    colnames(feature_coef_wsd) = alpha_label
+    rownames(feature_freq_mean) = feature
+    colnames(feature_freq_mean) = alpha_label
+    rownames(feature_freq_sd) = feature
+    colnames(feature_freq_sd) = alpha_label
+    rownames(null_feature_coef_wmean) = feature
+    colnames(null_feature_coef_wmean) = alpha_label
+    rownames(null_feature_coef_wsd) = feature
+    colnames(null_feature_coef_wsd) = alpha_label
+    rownames(null_feature_freq_mean) = feature
+    colnames(null_feature_freq_mean) = alpha_label
+    rownames(null_feature_freq_sd) = feature
+    colnames(null_feature_freq_sd) = alpha_label
+    rownames(feature_coef_model_vs_null_pval) = feature
+    colnames(feature_coef_model_vs_null_pval) = alpha_label
+    rownames(feature_freq_model_vs_null_pval) = feature
+    colnames(feature_freq_model_vs_null_pval) = alpha_label
+    for (i_alpha in 1:n_alpha) {
+        colnames(predicted_values[[i_alpha]]) = class
+        rownames(predicted_values[[i_alpha]]) = instance
+    }
+    
     list(
     # input data and parameters
-    predictor = x, response = y, alpha = alpha, family = family, nlambda = nlambda,
+    predictor = as(x,"CsparseMatrix"), response = y, alpha = alpha, family = family, nlambda = nlambda,
     nlambda.ext = nlambda.ext, seed = seed, scaled = scaled, n_fold = n_fold, n_run = n_run,
     n_perm_null = n_perm_null, QF_label = QF_label, instance = instance,
     feature = feature, fold_distrib_fail.max = fold_distrib_fail.max, glmnet_params = glmnet.control(),
