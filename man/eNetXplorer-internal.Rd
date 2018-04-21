@@ -1,39 +1,50 @@
 \name{eNetXplorer-internal}
 \title{Internal eNetXplorer functions}
-\alias{eNetXplorer.default}
 \alias{eNetXplorerBinomial}
 \alias{eNetXplorerGaussian}
 \alias{eNetXplorerMultinomial}
-\alias{plot.feature.caterpillar.multinom.eNetXplorer}
-\alias{plot.feature.heatmap.multinom.eNetXplorer}
-\alias{plot.measured.vs.oob.categ.eNetXplorer}
-\alias{plot.measured.vs.oob.numer.eNetXplorer}
+\alias{plotFeatureCaterpillarMultinom}
+\alias{plotFeatureHeatmapMultinom}
+\alias{plotMeasuredVsOOBCateg}
+\alias{plotMeasuredVsOOBNumer}
 \alias{print.eNetXplorer}
 \alias{print.summary.eNetXplorer}
-\alias{summary.eNetXplorer}
-\alias{plot.contingency.eNetXplorer}
-\alias{plot.feature.caterpillar.eNetXplorer}
-\alias{plot.feature.heatmap.eNetXplorer}
-\alias{plot.lambda.vs.QF.eNetXplorer}
-\alias{plot.measured.vs.oob.eNetXplorer}
-\alias{plot.summary.eNetXplorer}
 \description{Internal eNetXplorer functions}
 \usage{
-fix.lam(lam)
-lambda.interp(lambda,s)
-nonzeroCoef(beta, bystep=FALSE)
-glmnet_softmax(x)
+eNetXplorerGaussian(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled, 
+n_fold, n_run, n_perm_null, QF.FUN, QF_label, cor_method, \dots)
+
+eNetXplorerBinomial(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled,
+n_fold, n_run, n_perm_null, QF.FUN, QF_label, fold_distrib_fail.max, \dots)
+
+eNetXplorerMultinomial(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled,
+n_fold, n_run, n_perm_null, QF.FUN, QF_label, fold_distrib_fail.max, \dots)
+
+plotMeasuredVsOOBNumer <- function (x, alpha.index, xlab, ylab, cex.lab, main, 
+col.main, cex.main, instance.label, instance.label.cex, instance.label.offset,
+instance.label.added.margin, col, \dots)
+
+plotMeasuredVsOOBCateg <- function (x, alpha.index, xlab, ylab, cex.lab, main, 
+col.main, cex.main, instance.label, instance.label.cex, instance.label.offset,
+transparency, jitter, cex.pt, class.color, \dots)
+
+plotFeatureCaterpillarMultinom(x, alpha.index, stat, feature.all, 
+feature.pval.thres, feature.set, feature.top.n, signif.code, xlab, ylab, main, 
+col.main, cex.main, line, subtitle, col.subtitle, line.subtitle, cex.subtitle, 
+cexRow, cex.lab, legend, \dots)
+
+plotFeatureHeatmapMultinom(x, alpha.index, stat, feature.all, feature.pval.thres,
+feature.set, feature.top.n, signif.code, xlab, ylab, main, col.main, cex.main, 
+line, col, breaks, scale, Rowv, Colv, na.color, cexRow, srtRow, cexCol, srtCol,
+margins, key, key.title, dendogram, trace, notecol.freq, notecol.coef, notecex,
+subtitle1, col.subtitle1, line.subtitle1, cex.subtitle1, subtitle2, 
+col.subtitle2, line.subtitle2, cex.subtitle2, \dots)
 }
 \author{Julian Candia and John S. Tsang\cr 
 Maintainer: Julian Candia \email{julian.candia@nih.gov}}
-\details{These are not intended for use by users. \code{lambda.interp}
-  does linear interpolation of the lambdas to obtain a prediction at a
-  new point s. \code{glmnet_softmax} does the classification for multinomial models.
-  \code{nonzeroCoef} determines in an efficient manner which variables
-  are nonzero in each fit. \code{jerr} prints out error messages from
-  the fortran. \code{plotCoef} is called by the \code{plot} method for
-  \code{glmnet} objects. \code{check_dots} is used in \code{coef} and
-  \code{predict} with argument \code{exact=TRUE}, to make sure user
-  supplies original data used to fit the \code{"glmnet"} object.
+\details{These functions are not part of the package application programming interface (API) and are not intended for use by end users. Functions 
+\code{eNetXplorerGaussian}, \code{eNetXplorerBinomial} and \code{eNetXplorerMultinomial} are called by function \code{eNetXplorer} to run models of 
+type linear, binomial and multinomial, respectively. Functions \code{plotMeasuredVsOOBNumer} and \code{plotMeasuredVsOOBCateg} are called by function \code{plotMeasuredVsOOB} to generate plots for linear and categorical models, respectively. For multinomial models, functions \code{plotFeatureCaterpillarMultinom} and \code{plotFeatureHeatmapMultinom} are called 
+by functions \code{plotFeatureCaterpillar} and \code{plotFeatureHeatmap}, respectively.
 }
 \keyword{internal}
