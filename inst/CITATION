@@ -4,12 +4,11 @@ citEntry(entry="Article",
 title   = "eNetXplorer: an R package for the quantitative exploration of elastic net families for generalized linear models",
 author  = personList(as.person("Julian Candia"),
                     as.person("John S. Tsang")),
-journal = "(under review)",
-year    = "NA",
-volume  = "NA",
-number  = "NA",
-pages   = "NA",
+journal = "BMC Bioinformatics",
+year    = "2019",
+volume  = "20",
+pages   = "189",
 textVersion =
-paste("Julian Candia and John S. Tsang (2018)",
-      "eNetXplorer: an R package for the quantitative exploration of elastic net families for generalized linear models,","(under review)")
+paste("Julian Candia and John S. Tsang",
+      "eNetXplorer: an R package for the quantitative exploration of elastic net families for generalized linear models,","BMC Bioinformatics (2019) 20:189")
 )
