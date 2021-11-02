@@ -1,7 +1,7 @@
 plotContingency <- function (x, alpha.index=NULL,
 xlab="class (true)", ylab="class (predicted)", cex.lab=0.95, main=NULL, col.main = "black", cex.main=0.85,
 cex.axis=1, symbol.size.inches=0.5, bg.color="steelblue2", fg.color=NULL, margin=0.2,
-frequency.label=T, frequency.label.cex=1, frequency.label.offset=0,
+frequency.label=TRUE, frequency.label.cex=1, frequency.label.offset=0,
 ...)
 {
     if (is.null(alpha.index)) {

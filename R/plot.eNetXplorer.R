@@ -1,5 +1,5 @@
 plot.eNetXplorer <- function(x, plot.type=c("summary","lambdaVsQF","measuredVsOOB","contingency",
-"featureCaterpillar","featureHeatmap"), alpha.index=NULL, stat=c("freq","coef"), ...)
+"featureCaterpillar","featureHeatmap","KaplanMeier","survROC"), alpha.index=NULL, stat=c("freq","coef"), ...)
 {
     plot.type = match.arg(plot.type)
     
@@ -32,4 +32,21 @@ plot.eNetXplorer <- function(x, plot.type=c("summary","lambdaVsQF","measuredVsOO
         stat = match.arg(stat)
         plotFeatureCaterpillar(x=x, alpha.index=alpha.index, stat=stat,...)
     }
+    
+    if (plot.type=="KaplanMeier") { # Kaplan-Meier plots
+        if (x$family=="cox") {
+            plotKaplanMeier(x=x, alpha.index=alpha.index, ...)
+        } else {
+            warning("Kaplan-Meier plots only applicable to Cox regression models")
+        }
+    }
+    
+    if (plot.type=="survROC") { # survival ROC plots
+        if (x$family=="cox") {
+            plotSurvROC(x=x, alpha.index=alpha.index, ...)
+        } else {
+            warning("Survival ROC plots only applicable to Cox regression models")
+        }
+    }
+    
 }

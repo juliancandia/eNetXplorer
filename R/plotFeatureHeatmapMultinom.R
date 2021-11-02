@@ -12,12 +12,12 @@ subtitle2, col.subtitle2, line.subtitle2, cex.subtitle2,
         for (i_class in 1:n_class) {
             if (stat=="freq") {
                 feature_heatmap = as.matrix(x$feature_freq_mean[[i_class]])
-                pval = x$feature_freq_model_vs_null_pval[[i_class]]
+                pval = as.matrix(x$feature_freq_model_vs_null_pval[[i_class]])
                 main.def = paste0("frequencies for class ",class[i_class])
                 notecol = notecol.freq
             } else if (stat=="coef") {
                 feature_heatmap = as.matrix(x$feature_coef_wmean[[i_class]])
-                pval = x$feature_coef_model_vs_null_pval[[i_class]]
+                pval = as.matrix(x$feature_coef_model_vs_null_pval[[i_class]])
                 main.def = paste0("coefficients for class ",class[i_class])
                 notecol = notecol.coef
             }
@@ -77,7 +77,6 @@ subtitle2, col.subtitle2, line.subtitle2, cex.subtitle2,
                     cexRow = min(1.6/log(n_feature),0.5)
                 }
                 if (signif.code) {
-                    x$feature_coef_model_vs_null_pval[[i_class]][o,]
                     annot = matrix(rep("",n_feature*n_alpha),ncol=n_alpha)
                     annot[which(pval[o,]<0.1,arr.ind=T)] = "."
                     annot[which(pval[o,]<0.05,arr.ind=T)] = "*"

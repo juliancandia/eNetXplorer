@@ -1,13 +1,18 @@
 plotFeatureHeatmap <- function (
-x, alpha.index=NULL, stat=c("freq","coef"), feature.all = F, feature.pval.thres = NULL, feature.set = NULL,
-feature.top.n = 25, signif.code = T, xlab=NULL, ylab=NULL, main=NULL, col.main="black", cex.main=0.95,
-line=1, col=NULL, breaks=NULL, scale="none", Rowv=F, Colv=F, na.color=NULL,
-cexRow = NULL, srtRow=0, cexCol=0.75, srtCol=45, margins=c(5,5), key=T, key.title=NA, dendogram="none",
+x, alpha.index=NULL, stat=c("freq","coef"), feature.all = FALSE, feature.pval.thres = NULL, feature.set = NULL,
+feature.top.n = 25, signif.code = TRUE, xlab=NULL, ylab=NULL, main=NULL, col.main="black", cex.main=0.95,
+line=1, col=NULL, breaks=NULL, scale="none", Rowv=FALSE, Colv=FALSE, na.color=NULL,
+cexRow = NULL, srtRow=0, cexCol=0.75, srtCol=45, margins=c(5,5), key=TRUE, key.title=NA, dendogram="none",
 trace="none", notecol.freq = "black", notecol.coef = "white", notecex = 1, subtitle1=NULL, col.subtitle1="black",
 line.subtitle1=-1,cex.subtitle1=0.65, subtitle2=NULL, col.subtitle2="darkgray",line.subtitle2=-2,cex.subtitle2=0.55,
 ...) {
     if (is.null(alpha.index)) {
         alpha.index = 1:length(x$alpha)
+    }
+    n_alpha = length(x$alpha)
+    if (n_alpha<2) {
+        warning("Number of alpha values is < 2")
+        return()
     }
     stat = match.arg(stat)
     if ((x$family=="multinomial")&&(sum(levels(x$response)>2))) {
@@ -24,11 +29,10 @@ line.subtitle1=-1,cex.subtitle1=0.65, subtitle2=NULL, col.subtitle2="darkgray",l
         subtitle2=subtitle2, col.subtitle2=col.subtitle2, line.subtitle2=line.subtitle2, cex.subtitle2=cex.subtitle2,
         ...)
     } else {
-        n_alpha = length(x$alpha)
         for (i_alpha in alpha.index) {
             if (stat=="freq") {
                 feature_heatmap = as.matrix(x$feature_freq_mean)
-                pval = x$feature_freq_model_vs_null_pval
+                pval = as.matrix(x$feature_freq_model_vs_null_pval)
                 main.def = "frequencies"
                 notecol = notecol.freq
                 if (x$family=="binomial") {
@@ -36,7 +40,7 @@ line.subtitle1=-1,cex.subtitle1=0.65, subtitle2=NULL, col.subtitle2="darkgray",l
                 }
             } else if (stat=="coef") {
                 feature_heatmap = as.matrix(x$feature_coef_wmean)
-                pval = x$feature_coef_model_vs_null_pval
+                pval = as.matrix(x$feature_coef_model_vs_null_pval)
                 main.def = "coefficients"
                 notecol = notecol.coef
                 if (x$family=="binomial") {
@@ -100,7 +104,6 @@ line.subtitle1=-1,cex.subtitle1=0.65, subtitle2=NULL, col.subtitle2="darkgray",l
                     cexRow = min(1.6/log(n_feature),0.5)
                 }
                 if (signif.code) {
-                    x$feature_coef_model_vs_null_pval[o,]
                     annot = matrix(rep("",n_feature*n_alpha),ncol=n_alpha)
                     annot[which(pval[o,]<0.1,arr.ind=T)] = "."
                     annot[which(pval[o,]<0.05,arr.ind=T)] = "*"

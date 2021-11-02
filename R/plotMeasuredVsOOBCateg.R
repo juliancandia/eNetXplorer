@@ -2,6 +2,7 @@ plotMeasuredVsOOBCateg <- function (
 x, alpha.index, xlab, ylab, cex.lab,
 main, col.main, cex.main, instance.label,
 instance.label.cex, instance.label.offset,
+box.wex, box.range, box.col,
 transparency, jitter, cex.pt, class.color,
 ...)
 {
@@ -10,7 +11,7 @@ transparency, jitter, cex.pt, class.color,
         xlab="response"
     }
     if (is.null(ylab)) {
-        ylab="out-of-bag predicted (accuracy)"
+        ylab="frequency of OOB correct predictions"
     }
     for (i_alpha in alpha.index) {
         accuracy = rep(NA,n_instance)
@@ -19,7 +20,8 @@ transparency, jitter, cex.pt, class.color,
         }
         
         boxplot(as.formula("accuracy ~ x.response"),data=data.frame(x$response,accuracy),
-        xlab=xlab,ylab=ylab,cex.lab=cex.lab,outline=F,boxwex=0.5,range=0,...)
+        xlab=xlab,ylab=ylab,cex.lab=cex.lab,outline=F,boxwex=box.wex,
+        range=box.range,col=box.col,...)
         if (is.null(main)) {
             main.title = paste0("alpha=",x$alpha[i_alpha],
             "; lambda=",signif(x$best_lambda[i_alpha],digits=3),
