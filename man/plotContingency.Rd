@@ -10,7 +10,7 @@ true vs predicted contingency matrix across classes for a given \code{alpha}.
 plotContingency(x, alpha.index=NULL, xlab="class (true)", ylab="class (predicted)", 
 cex.lab=0.95, main=NULL, col.main="black", cex.main=0.85, cex.axis=1, 
 symbol.size.inches=0.5, bg.color="steelblue2", fg.color=NULL, margin=0.2, 
-frequency.label=T, frequency.label.cex=1, frequency.label.offset=0, \dots)
+frequency.label=TRUE, frequency.label.cex=1, frequency.label.offset=0, \dots)
 }
 \arguments{
   \item{x}{\code{eNetXplorer} object.}
@@ -26,7 +26,7 @@ frequency.label=T, frequency.label.cex=1, frequency.label.offset=0, \dots)
   \item{bg.color}{Symbol color.}
   \item{fg.color}{Color of symbol background.}
   \item{margin}{Margin size  to accomodate symbols.}
-  \item{frequency.label}{Logical to display class frequency labels. Default is TRUE.}
+  \item{frequency.label}{Logical to display class frequency labels. Default is \code{TRUE}.}
   \item{frequency.label.cex}{Size of class frequency labels.}
   \item{frequency.label.offset}{Offset of class frequency labels.}
   \item{\dots}{Additional plotting parameters.}
@@ -37,7 +37,14 @@ Maintainer: Julian Candia \email{julian.candia@nih.gov}}
 \code{\link{eNetXplorer}}, \code{\link{plot}}
 }
 \examples{
-\dontrun{
+\dontshow{
+set.seed(123)
+fit = eNetXplorer(x=matrix(rnorm(120),ncol=4),y=c(rep(0,15),rep(1,15)),
+family="binomial",n_run=5, n_perm_null=4,alpha=c(0.5,1))
+plot(x=fit,plot.type="contingency")
+plotContingency(x=fit,alpha.index=1)
+}
+\donttest{
 data(QuickStartEx)
 binarized=rep("low",length(QuickStartEx$response))
 binarized[QuickStartEx$response>median(QuickStartEx$response)]="high"

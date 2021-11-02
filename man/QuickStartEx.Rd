@@ -1,7 +1,7 @@
 \name{QuickStartEx}
 \alias{QuickStartEx}
 \docType{data}
-\title{Synthetic dataset}
+\title{synthetic dataset}
 \description{
 75 instances with 20 predictors and a numerical response to be used as a quick start example. 
 }
