@@ -1,5 +1,5 @@
 # eNetXplorer
-R package for the quantitative exploration of elastic net families for generalized linear models.
+**R package for the quantitative exploration of elastic net families for generalized linear models.**
 
 Documentation (manual and vignette) are available in the `eNetXplorer/inst/doc` folder. 
 
