@@ -16,6 +16,9 @@ dest_dir=NULL)
   \item{dest_obj}{Name of the merged \code{eNetXplorer} object.}
   \item{dest_dir}{Destination directory. If not specified, it will use \code{source_dir} as default.}
 }
+\value{
+An object with S3 class \code{"eNetXplorer"}.
+}
 \author{Julian Candia and John S. Tsang\cr 
 Maintainer: Julian Candia \email{julian.candia@nih.gov}}
 \seealso{\code{\link{eNetXplorer}}}
@@ -30,7 +33,7 @@ dest_obj="eNet1.Robj",n_run=20,n_perm_null=10,seed=111)
 fit2 = eNetXplorer(x=QuickStartEx$predictor,y=QuickStartEx$response,
 family="gaussian",alpha=seq(0.1,0.9,by=0.2),save_obj=TRUE,dest_dir=working_dir,
 dest_obj="eNet2.Robj",n_run=20,n_perm_null=10,seed=111)
-mergeObj(source_obj=c("eNet1.Robj","eNet2.Robj"),source_dir=working_dir)
+eNet_merged=mergeObj(source_obj=c("eNet1.Robj","eNet2.Robj"),source_dir=working_dir)
 
 # we generate summary PDFs to compare the results before and after merging.
 summaryPDF(fit1, dest_file="eNet1.pdf",dest_dir=working_dir)

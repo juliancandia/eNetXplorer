@@ -9,8 +9,8 @@ Provides a quantitative toolkit to explore elastic net families and to uncover c
 \tabular{ll}{
 Package: \tab eNetXplorer\cr
 Type: \tab Package\cr
-Version: \tab 1.1.2\cr
-Date: \tab 2020-08-25\cr
+Version: \tab 1.1.3\cr
+Date: \tab 2021-11-03\cr
 License: \tab GPL-3\cr
 }
 This package provides a full pipeline of analysis: 

@@ -11,8 +11,8 @@
 \alias{print.summary.eNetXplorer}
 \description{Internal eNetXplorer functions}
 \usage{
-eNetXplorerGaussian(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled, 
-n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, \dots)
+eNetXplorerGaussian(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled, n_fold, 
+n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, QF_gaussian, \dots)
 
 eNetXplorerBinomial(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled,
 n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, binom_method,
