@@ -220,6 +220,5 @@ mergeObj <- function(source_obj, source_dir=getwd(), dest_obj="eNet_merged.Robj"
     }
     class(eNet) <- "eNetXplorer"
     save(eNet,file=file.path(dest_dir,dest_obj))
-    "eNetXplorer objects merged."
 }
 
