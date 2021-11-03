@@ -3,7 +3,7 @@ R package for the quantitative exploration of elastic net families for generaliz
 
 Documentation (manual and vignette) available at the eNetXplorer/inst/doc folder. 
 
-To install, start R and enter:</br>
+To install, start R and enter:<br />
 
   if (!require(devtools)){
       install.packages("devtools")
