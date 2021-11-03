@@ -1,6 +1,6 @@
 # Gaussian model
 eNetXplorerGaussian <- function(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled,
-n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, ...)
+n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, QF_gaussian, ...)
 {
     n_instance = nrow(x)
     n_feature = ncol(x)
@@ -15,11 +15,30 @@ n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, .
     prediction_type = "link"
     
     if (is.null(QF.FUN)) {
-        QF = function(predicted,response) {
-            cor_test = cor.test(predicted,response,method=cor_method)
-            return (cor_test$estimate)
+        if (QF_gaussian=="cor.pearson") {
+            QF = function(predicted,response) {
+                cor_test = cor.test(predicted,response,method="pearson")
+                return (cor_test$estimate)
+            }
+            QF_label = "Pearson correlation"
+        } else if (QF_gaussian=="cor.spearman") {
+            QF = function(predicted,response) {
+                cor_test = cor.test(predicted,response,method="spearman")
+                return (cor_test$estimate)
+            }
+            QF_label = "Spearman correlation"
+        } else if (QF_gaussian=="cor.kendall") {
+            QF = function(predicted,response) {
+                cor_test = cor.test(predicted,response,method="kendall")
+                return (cor_test$estimate)
+            }
+            QF_label = "Kendall correlation"
+        } else if (QF_gaussian=="mse") {
+            QF = function(predicted,response) {
+                return (-mean((predicted-response)**2))
+            }
+            QF_label = "-MSE"
         }
-        QF_label = paste0("correlation (",cor_method,")")
     } else {
         QF = QF.FUN
         if (is.null(QF_label)) {
@@ -140,7 +159,7 @@ n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, .
         predictor = as(x,"CsparseMatrix"), response = y, alpha = alpha[1:n_alpha_eff], family = family, nlambda = nlambda,
         nlambda.ext = nlambda.ext, seed = seed, scaled = scaled, n_fold = n_fold, n_run = n_run,
         n_perm_null = n_perm_null, save_lambda_QF_full = save_lambda_QF_full,
-        QF_label = QF_label, cor_method = cor_method, instance = instance,
+        QF_label = QF_label, QF_gaussian = QF_gaussian, instance = instance,
         feature = feature, glmnet_params = glmnet.control(),
         # summary results
         best_lambda = best_lambda, model_QF_est = model_QF_est, QF_model_vs_null_pval = QF_model_vs_null_pval,

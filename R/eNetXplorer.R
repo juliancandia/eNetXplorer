@@ -3,7 +3,7 @@ eNetXplorer <- function(x, y, family=c("gaussian","binomial","multinomial","cox"
     seed=NULL, scaled=TRUE, n_fold=5, n_run=100, n_perm_null=25,
     save_obj=FALSE, dest_dir=getwd(), dest_dir_create=TRUE, dest_dir_create_recur=FALSE, dest_obj="eNet.Robj",
     save_lambda_QF_full=FALSE,
-    QF.FUN=NULL, QF_label=NULL, cor_method=c("pearson","kendall","spearman"),
+    QF.FUN=NULL, QF_label=NULL, QF_gaussian=c("cor.pearson","cor.spearman","cor.kendall","mse"),
     binom_method=c("accuracy","precision","recall","Fscore","specificity","auc"),
     multinom_method=c("avg accuracy", "avg precision","avg recall","avg Fscore"),
     binom_pos=NULL, fscore_beta=NULL, fold_distrib_fail.max=100, cox_index=c("concordance","D-index"),
@@ -18,7 +18,8 @@ eNetXplorer <- function(x, y, family=c("gaussian","binomial","multinomial","cox"
     family = match.arg(family)
     if (family=="gaussian") {
         eNet <- eNetXplorerGaussian(x=x, y=y, family=family, alpha=alpha, nlambda=nlambda, nlambda.ext=nlambda.ext,seed=seed, scaled=scaled, n_fold=n_fold, n_run=n_run,
-        n_perm_null=n_perm_null, save_lambda_QF_full=save_lambda_QF_full, QF.FUN=QF.FUN, QF_label=QF_label, cor_method=match.arg(cor_method), ...)
+        n_perm_null=n_perm_null, save_lambda_QF_full=save_lambda_QF_full, QF.FUN=QF.FUN,
+        QF_label=QF_label, QF_gaussian=match.arg(QF_gaussian), ...)
     } else if (family=="binomial") {
         eNet <- eNetXplorerBinomial(x=x, y=y, family=family, alpha=alpha, nlambda=nlambda, nlambda.ext=nlambda.ext, seed=seed, scaled=scaled, n_fold=n_fold, n_run=n_run,
         n_perm_null=n_perm_null, save_lambda_QF_full=save_lambda_QF_full, QF.FUN=QF.FUN, QF_label=QF_label,
