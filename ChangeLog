@@ -1,0 +1,36 @@
+2020-08-25 Julian Candia <julian.candia@nih.gov> version 1.1.2
+        * added mergeObj.R function to merge objects generated with different alphas.
+        * added option to save full lambda vs QF information; updated export function accordingly.  
+        * added option to create the destination directory recursively.
+        * survival time-dependent AUC in Cox models is now calculated using the timeROC package and dependencies (before, the package survivalROC was used). 
+        * fixes to time-dependent ROC plots. 
+        * updated and improved man pages.
+        * extensive update of the vignette to report errata and to discuss parallelization, negative regression slopes, etc.
+ 
+2020-06-14 Julian Candia <julian.candia@nih.gov> version 1.1.1
+        * deleted exportClasses() from NAMESPACE to address some Package Check warnings.
+
+2019-09-19 Julian Candia <julian.candia@nih.gov> version 1.1.0
+        * added Cox regression (family="cox").
+        * added BreastC_Surv.RData dataset for Cox regression.
+        * added plots specific to Cox regression: plotKaplanMeier, plotSurvROC.
+        * added functionality to save the eNetXplorer object.
+        * fixed y-axis label of plotMeasuredVsOOB for categorical models.
+        * improved handling of destination directory and file names in export.R and summaryPDF.R 
+        * updated and improved man pages.
+
+2019-04-16 Julian Candia <julian.candia@nih.gov> version 1.0.2
+	* expanded built-in quality function options for binomial and multinomial models.
+        * expanded the Leukemia_miR.RData dataset to include both full and filtered datasets (to ensure data provenance and reproducibility).
+        * added error-catching functions, so that if an error happens, results for completed alphas are returned. 
+        * added n_lambda_eff to deal with glmnet convergence issues (where glmnet would return solutions for a subset of lambdas).
+        * added suppressWarnings() call around arrows() in plotFeatureCaterpillar.R and plotFeatureCaterpillarMultinom.R 
+        * added vignette.
+        * updated man pages.
+        * updated citation.     
+
+2018-06-10 Julian Candia <julian.candia@nih.gov> version 1.0.1
+	* added export option for p-value tables. 
+	* added progress bar during computation of model predictions.
+        * updated references.
+        * fixed bug in plot feature heatmap code (issue with sparse pval matrix).
