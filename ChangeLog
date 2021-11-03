@@ -1,6 +1,6 @@
 2021-11-03 Julian Candia <julian.candia@nih.gov> version 1.1.3
         * added mean squared error as built-in quality function for gaussian models.
-        * minor fix to mergeObj.R to avoid printing "Call: NULL" return message upon completion.
+        * fix to mergeObj to avoid printing "Call: NULL" return message upon completion.
 
 2020-08-25 Julian Candia <julian.candia@nih.gov> version 1.1.2
         * added mergeObj.R function to merge objects generated with different alphas.
