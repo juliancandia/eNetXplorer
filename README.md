@@ -10,3 +10,5 @@ if (!require(devtools)){
 }
 devtools::install_github("juliancandia/eNetXplorer")
 ```
+
+For another package of interest, see also: https://github.com/hongooi73/glmnetUtils 
